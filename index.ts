@@ -1,5 +1,4 @@
-
-module.exports = class Calendar {
+export default class Calendar {
   firstYear: number;
   finalYear: number;
   months: string[];
