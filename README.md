@@ -4,6 +4,9 @@
   npm install @johang/calendar-date-time.js
 ```
 
+## Description
+a class that can generate objects of years/months/days for further developing a calendar related component
+
 ### Example
 
 ```js
