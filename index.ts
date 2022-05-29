@@ -1,8 +1,8 @@
 export default class Calendar {
-  firstYear: number;
-  finalYear: number;
-  months: string[];
-  days: string[];
+  firstYear: number = 1970;
+  finalYear: number = 2022;
+  months: string[] = [];
+  days: string[] = [];
 
   constructor(firstYear: number, finalYear: number, months?: string[], days?: string[]) {
     this.firstYear = firstYear;
