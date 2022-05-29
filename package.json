@@ -1,6 +1,6 @@
 {
   "name": "@johang/calendar-date-time-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A class that returns an array spanning provided years with their months and days as objects",
   "main": "index.ts",
   "scripts": {
@@ -10,10 +10,5 @@
   "license": "MIT",
   "dependencies": {
     "typescript": "^4.7.2"
-  },
-  "devDependencies": {
-    "ts-loader": "^9.3.0",
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
   }
 }
