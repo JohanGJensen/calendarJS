@@ -1,8 +1,8 @@
 export default class Calendar {
-  public firstYear: number = 1970;
-  public finalYear: number = 2022;
-  public months: string[] = [];
-  public days: string[] = [];
+  public firstYear: number;
+  public finalYear: number;
+  public months: string[];
+  public days: string[];
 
   constructor(firstYear: number, finalYear: number, months?: string[], days?: string[]) {
     this.firstYear = firstYear;
@@ -12,7 +12,7 @@ export default class Calendar {
   }
 
   public getYears = () => {
-    const years = [];
+    const years: { year: any; months: any[]; }[] = [];
 
     for (let i = this.firstYear; this.finalYear >= i; i++) {
       years.push({
