@@ -1,3 +1,18 @@
+export interface IYear {
+  year: string;
+  months: IMonth[];
+}
+
+export interface IMonth {
+  month: string;
+  days: IDay[];
+}
+
+export interface IDay {
+  day: string;
+  number: string;
+}
+
 export default class Calendar {
   public firstYear: number;
   public finalYear: number;
@@ -11,12 +26,12 @@ export default class Calendar {
     this.days = days || ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   }
 
-  public getYears = () => {
-    const years: { year: any; months: any[]; }[] = [];
+  public getYears = (): IYear[] => {
+    const years: IYear[] = [];
 
     for (let i = this.firstYear; this.finalYear >= i; i++) {
       years.push({
-        year: i,
+        year: i.toString(),
         months: this.getMonths(i),
       });
     }
@@ -24,9 +39,9 @@ export default class Calendar {
     return years;
   };
 
-  public getMonths = (year: number) => {
+  public getMonths = (year: number): IMonth[] => {
     const monthCount = 12;
-    const months = [];
+    const months: IMonth[] = [];
 
     for (let i = 1; monthCount >= i; i++) {
       months.push({
@@ -38,13 +53,14 @@ export default class Calendar {
     return months;
   };
 
-  public getDays = (year: number, month: number) => {
+  public getDays = (year: number, month: number): IDay[] => {
     const dayCount = new Date(year, month, 0).getDate();
-    const days = [];
+    const days: IDay[] = [];
 
     for (let i = 1; dayCount >= i; i++) {
       days.push({
         day: this.getDayString(i % 7),
+        number: i.toString(),
       })
     }
 
