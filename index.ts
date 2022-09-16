@@ -1,16 +1,19 @@
 export interface IYear {
   year: string;
   months: IMonth[];
+  currentYear: boolean;
 }
 
 export interface IMonth {
   month: string;
   days: IDay[];
+  currentMonth: boolean;
 }
 
 export interface IDay {
   day: string;
   number: string;
+  currentDay: boolean;
 }
 
 export default class Calendar {
@@ -27,12 +30,20 @@ export default class Calendar {
   }
 
   public getYears = (): IYear[] => {
+    const currentYear = new Date().getFullYear();
     const years: IYear[] = [];
 
-    for (let i = this.firstYear; this.finalYear >= i; i++) {
+    for (let year = this.firstYear; this.finalYear >= year; year++) {
+      let isCurrentYear = false;
+
+      if (currentYear === year) {
+        isCurrentYear = true;
+      }
+
       years.push({
-        year: i.toString(),
-        months: this.getMonths(i),
+        year: year.toString(),
+        months: this.getMonths(year),
+        currentYear: isCurrentYear,
       });
     }
 
@@ -40,13 +51,21 @@ export default class Calendar {
   };
 
   public getMonths = (year: number): IMonth[] => {
+    const currentMonth = new Date().getMonth();
     const monthCount = 12;
     const months: IMonth[] = [];
 
-    for (let i = 1; monthCount >= i; i++) {
+    for (let month = 1; monthCount >= month; month++) {
+      let isCurrentMonth = false;
+
+      if (currentMonth === month) {
+        isCurrentMonth = true;
+      }
+
       months.push({
-        month: this.getMonthString(i - 1),
-        days: this.getDays(year, i),
+        month: this.getMonthString(month - 1),
+        days: this.getDays(year, month),
+        currentMonth: isCurrentMonth,
       })
     }
 
@@ -54,13 +73,21 @@ export default class Calendar {
   };
 
   public getDays = (year: number, month: number): IDay[] => {
+    const currentDay = new Date().getDay();
     const dayCount = new Date(year, month, 0).getDate();
     const days: IDay[] = [];
 
-    for (let i = 1; dayCount >= i; i++) {
+    for (let day = 1; dayCount >= day; day++) {
+      let isCurrentDay = false;
+
+      if (currentDay === day) {
+        isCurrentDay = true;
+      }
+
       days.push({
-        day: this.getDayString(i % 7),
-        number: i.toString(),
+        day: this.getDayString(day % 7),
+        number: day.toString(),
+        currentDay: isCurrentDay,
       })
     }
 
