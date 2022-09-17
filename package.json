@@ -1,6 +1,6 @@
 {
   "name": "@johang/calendar-date-time-js",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A class that returns an array spanning provided years with their months and days as objects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

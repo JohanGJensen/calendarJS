@@ -22,6 +22,8 @@ export default class Calendar {
   public months: string[];
   public days: string[];
 
+  private currentMonth: number;
+
   constructor(firstYear: number, finalYear: number, months?: string[], days?: string[]) {
     this.firstYear = firstYear;
     this.finalYear = finalYear;
@@ -58,8 +60,9 @@ export default class Calendar {
     for (let month = 1; monthCount >= month; month++) {
       let isCurrentMonth = false;
 
-      if (currentMonth === month) {
+      if (currentMonth === month - 1) {
         isCurrentMonth = true;
+        this.currentMonth = month;
       }
 
       months.push({
@@ -73,14 +76,14 @@ export default class Calendar {
   };
 
   public getDays = (year: number, month: number): IDay[] => {
-    const currentDay = new Date().getDay();
+    const currentDay = new Date().getDate();
     const dayCount = new Date(year, month, 0).getDate();
     const days: IDay[] = [];
 
     for (let day = 1; dayCount >= day; day++) {
       let isCurrentDay = false;
 
-      if (currentDay === day) {
+      if (currentDay === day && month === this.currentMonth) {
         isCurrentDay = true;
       }
 
