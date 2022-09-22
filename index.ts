@@ -22,6 +22,7 @@ export default class Calendar {
   public months: string[];
   public days: string[];
 
+  private currentYear: number;
   private currentMonth: number;
 
   constructor(firstYear: number, finalYear: number, months?: string[], days?: string[]) {
@@ -40,6 +41,7 @@ export default class Calendar {
 
       if (currentYear === year) {
         isCurrentYear = true;
+        this.currentYear = year;
       }
 
       years.push({
@@ -60,7 +62,7 @@ export default class Calendar {
     for (let month = 1; monthCount >= month; month++) {
       let isCurrentMonth = false;
 
-      if (currentMonth === month - 1) {
+      if (currentMonth === month - 1 && this.currentYear === year) {
         isCurrentMonth = true;
         this.currentMonth = month;
       }
@@ -83,7 +85,7 @@ export default class Calendar {
     for (let day = 1; dayCount >= day; day++) {
       let isCurrentDay = false;
 
-      if (currentDay === day && month === this.currentMonth) {
+      if (currentDay === day && month === this.currentMonth && year === this.currentYear) {
         isCurrentDay = true;
       }
 
