@@ -13,6 +13,9 @@
   "author": "Johan Glud Jensen",
   "license": "MIT",
   "dependencies": {
-    "typescript": "^4.7.2"
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.12"
   }
 }
