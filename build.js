@@ -10,7 +10,7 @@ new Generator({
 const sharedConfig = {
   entryPoints: ["index.ts"],
   bundle: false,
-  minify: true,
+  minify: false,
   // external: Object.keys(dependencies),
 };
 
