@@ -1,31 +1,34 @@
-export interface IYear {
+export type IYear = {
   year: string;
   months: IMonth[];
   currentYear: boolean;
 }
 
-export interface IMonth {
+export type IMonth = {
   month: string;
   days: IDay[];
   currentMonth: boolean;
 }
 
-export interface IDay {
+export type IDay = {
   day: string;
   number: string;
   currentDay: boolean;
 }
 
+export type Days = [string, string, string, string, string, string, string]; // x7
+export type Months = [string, string, string, string, string, string, string, string, string, string, string, string]; // x12
+
 export default class Calendar {
   public firstYear: number;
   public finalYear: number;
-  public months: string[];
-  public days: string[];
+  public months: Months;
+  public days: Days;
 
-  private currentYear: number;
-  private currentMonth: number;
+  private currentYear: number = 0;
+  private currentMonth: number = 0;
 
-  constructor(firstYear: number, finalYear: number, months?: string[], days?: string[]) {
+  constructor(firstYear: number, finalYear: number, months?: Months, days?: Days) {
     this.firstYear = firstYear;
     this.finalYear = finalYear;
     this.months = months || ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
