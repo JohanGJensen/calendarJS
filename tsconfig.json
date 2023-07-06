@@ -13,6 +13,7 @@
     "outDir": "dist",
     "noImplicitAny": true,
     "isolatedModules": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "index.ts"
