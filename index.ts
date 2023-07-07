@@ -25,24 +25,25 @@ export default class Calendar {
   public months: Months;
   public days: Days;
 
-  private currentYear: number = 0;
-  private currentMonth: number = 0;
+  private currentYear: number = new Date().getFullYear();
+  private currentMonth: number = new Date().getMonth();
 
   constructor(firstYear: number, finalYear: number, months?: Months, days?: Days) {
     this.firstYear = firstYear;
     this.finalYear = finalYear;
     this.months = months || ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.days = days || ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
   }
 
   public getYears = (): IYear[] => {
-    const currentYear = new Date().getFullYear();
     const years: IYear[] = [];
 
     for (let year = this.firstYear; this.finalYear >= year; year++) {
       let isCurrentYear = false;
 
-      if (currentYear === year) {
+      if (this.currentYear === year) {
         isCurrentYear = true;
         this.currentYear = year;
       }
@@ -58,14 +59,13 @@ export default class Calendar {
   };
 
   public getMonths = (year: number): IMonth[] => {
-    const currentMonth = new Date().getMonth();
     const monthCount = 12;
     const months: IMonth[] = [];
 
     for (let month = 1; monthCount >= month; month++) {
       let isCurrentMonth = false;
 
-      if (currentMonth === month - 1 && this.currentYear === year) {
+      if (this.currentMonth === month - 1 && this.currentYear === year) {
         isCurrentMonth = true;
         this.currentMonth = month;
       }
@@ -114,3 +114,5 @@ export default class Calendar {
     return Date.parse(`${year}-01-01`);
   };
 };
+
+export type CalendarType = typeof Calendar;
