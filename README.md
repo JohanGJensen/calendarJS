@@ -1,7 +1,7 @@
-### Calendar-dates-time-js install
+### CalendarJS install
 
 ```
-  npm install @johang/calendar-date-time.js
+  npm install @johang/calendarjs
 ```
 
 ## Description
@@ -10,7 +10,7 @@ a class that can generate objects of years/months/days for further developing a 
 ### Example
 
 ```js
-  import Calendar from '@johang/calendar-time-date-js';
+  import Calendar from '@johang/calendarjs';
 
   const calendar = new Calendar(2020, 2022);
   calendar.getYears();
