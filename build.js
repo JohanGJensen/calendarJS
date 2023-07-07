@@ -14,15 +14,15 @@ const sharedConfig = {
   // external: Object.keys(dependencies),
 };
 
-build({
-  ...sharedConfig,
-  platform: 'node', // for CJS
-  outfile: "dist/index.js",
-});
+// build({
+//   ...sharedConfig,
+//   platform: 'node', // for CJS
+//   outfile: "dist/index.js",
+// });
 
 build({
   ...sharedConfig,
-  outfile: "dist/index.esm.js",
+  outfile: "dist/index.js",
   platform: 'neutral', // for ESM
   format: "esm",
 });
