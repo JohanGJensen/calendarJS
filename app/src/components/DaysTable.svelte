@@ -1,23 +1,23 @@
 <script lang="ts">
   import Table from "./Table.svelte";
-  import { year, updateMonth } from "../store";
-  import type { IMonth } from "@johang/calendarjs";
+  import { month } from "../store";
+  import type { IDay } from "@johang/calendarjs";
 
-  let thisYear: string;
-  let months: IMonth[];
+  let thisMonth: string;
+  let days: IDay[];
 
-  year.subscribe((value) => {
-    thisYear = value.year;
-    months = value.months;
+  month.subscribe((value) => {
+    thisMonth = value.month;
+    days = value.days;
   });
 </script>
 
 <Table>
-  {#if months}
-    <th>Months from year: {thisYear}</th>
-    {#each months as { month }, i}
-      <tr on:click={() => updateMonth(months[i])}>
-        {month}
+  {#if days}
+    <th>Days from month: {thisMonth}</th>
+    {#each days as { day, number }}
+      <tr on:click={() => console.log(day)}>
+        {number} - {day}
       </tr>
     {/each}
   {/if}
