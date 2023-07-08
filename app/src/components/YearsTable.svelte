@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
   import type { IYear } from "@johang/calendarjs";
   import { years, year, updateYear } from "../store";
@@ -16,7 +17,7 @@
 </script>
 
 <Table>
-  <th>years {thisYear}</th>
+  <TableHeader text={`years ${thisYear}`} />
   {#each thisYears as { year }, i}
     <tr on:click={() => updateYear(thisYears[i])}>
       {year}
@@ -25,15 +26,6 @@
 </Table>
 
 <style>
-  th {
-    border: 1px solid #ddd;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04aa6d;
-    color: white;
-  }
-
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }

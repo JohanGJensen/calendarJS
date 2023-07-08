@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
   import { month } from "../store";
   import type { IDay } from "@johang/calendarjs";
@@ -14,7 +15,7 @@
 
 <Table>
   {#if days}
-    <th>Days from month: {thisMonth}</th>
+    <TableHeader text={`Days from month: ${thisMonth}`} />
     {#each days as { day, number }}
       <tr on:click={() => console.log(day)}>
         {number} - {day}
@@ -24,15 +25,6 @@
 </Table>
 
 <style>
-  th {
-    border: 1px solid #ddd;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04aa6d;
-    color: white;
-  }
-
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }

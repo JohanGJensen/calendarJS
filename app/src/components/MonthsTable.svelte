@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
   import { year, updateMonth } from "../store";
   import type { IMonth } from "@johang/calendarjs";
@@ -14,7 +15,7 @@
 
 <Table>
   {#if months}
-    <th>Months from year: {thisYear}</th>
+    <TableHeader text={`Months from year: ${thisYear}`} />
     {#each months as { month }, i}
       <tr on:click={() => updateMonth(months[i])}>
         {month}
@@ -24,15 +25,6 @@
 </Table>
 
 <style>
-  th {
-    border: 1px solid #ddd;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04aa6d;
-    color: white;
-  }
-
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
