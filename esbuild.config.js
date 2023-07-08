@@ -3,13 +3,13 @@ const { build } = require("esbuild");
 const { Generator } = require('npm-dts');
 
 new Generator({
-  entry: 'index.ts',
+  entry: 'src/index.ts',
   output: 'dist/index.d.ts',
 }).generate();
 
 const sharedConfig = {
-  entryPoints: ["index.ts"],
-  bundle: false,
+  entryPoints: ["src/index.ts"],
+  bundle: true,
   minify: false,
   // external: Object.keys(dependencies),
 };

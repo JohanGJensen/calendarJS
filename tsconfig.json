@@ -15,10 +15,10 @@
     "isolatedModules": true,
   },
   "include": [
-    "index.ts"
+    "src/index.ts"
   ],
   "exclude": [
     "dist",
-    "test"
+    "app"
   ]
 }
