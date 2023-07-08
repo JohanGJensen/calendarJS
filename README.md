@@ -4,6 +4,12 @@
   npm install @johang/calendarjs
 ```
 
+* Please NOTE: a {`DEPRECATED`} version of the package exists called:
+```
+  @johang/calendar-date-time-js
+```
+This package is no longer supported.
+
 ## Description
 a class that can generate objects of years/months/days for further developing a calendar related component
 
