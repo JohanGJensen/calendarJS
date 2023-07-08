@@ -1,27 +1,53 @@
-import { Days, IDay, IMonth, IYear, Months } from "./interfaces";
+import {
+  CalendarRange,
+  Config,
+  Days,
+  IDay,
+  IMonth,
+  IYear,
+  Months,
+} from "./interfaces";
 
 export default class Calendar {
-  public firstYear: number;
-  public finalYear: number;
+  public range: CalendarRange;
   public months: Months;
   public days: Days;
 
+  // today's year & month
   private currentYear: number = new Date().getFullYear();
   private currentMonth: number = new Date().getMonth();
 
-  constructor(firstYear: number, finalYear: number, months?: Months, days?: Days) {
-    this.firstYear = firstYear;
-    this.finalYear = finalYear;
-    this.months = months || ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    this.days = days || ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-
+  constructor(config: Config) {
+    this.range = config.range;
+    this.months = config.months || [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    this.days = config.days || [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
   }
 
   public getYears = (): IYear[] => {
     const years: IYear[] = [];
 
-    for (let year = this.firstYear; this.finalYear >= year; year++) {
+    for (let year = this.range.start; this.range.end >= year; year++) {
       let isCurrentYear = false;
 
       if (this.currentYear === year) {
@@ -55,7 +81,7 @@ export default class Calendar {
         month: this.getMonthString(month - 1),
         days: this.getDays(year, month),
         currentMonth: isCurrentMonth,
-      })
+      });
     }
 
     return months;
@@ -69,7 +95,11 @@ export default class Calendar {
     for (let day = 1; dayCount >= day; day++) {
       let isCurrentDay = false;
 
-      if (currentDay === day && month === this.currentMonth && year === this.currentYear) {
+      if (
+        currentDay === day &&
+        month === this.currentMonth &&
+        year === this.currentYear
+      ) {
         isCurrentDay = true;
       }
 
@@ -77,7 +107,7 @@ export default class Calendar {
         day: this.getDayString(day % 7),
         number: day.toString(),
         currentDay: isCurrentDay,
-      })
+      });
     }
 
     return days;
@@ -94,6 +124,6 @@ export default class Calendar {
   private yearToTimestamp = (year: number) => {
     return Date.parse(`${year}-01-01`);
   };
-};
+}
 
 export type CalendarType = typeof Calendar;
