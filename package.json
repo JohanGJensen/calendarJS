@@ -9,7 +9,7 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "tsc && node build.js"
+    "build": "node build.js"
   },
   "author": "Johan Glud Jensen",
   "license": "MIT",

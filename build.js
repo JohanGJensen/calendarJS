@@ -1,5 +1,5 @@
 const { build } = require("esbuild");
-const { dependencies } = require('./package.json');
+// const { dependencies } = require('./package.json');
 const { Generator } = require('npm-dts');
 
 new Generator({
