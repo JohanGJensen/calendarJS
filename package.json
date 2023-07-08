@@ -4,6 +4,7 @@
   "description": "A class that returns an array spanning provided years with their months and days as objects",
   "keywords": [
     "calendar",
+    "datepicker",
     "api",
     "typescript"
   ],
