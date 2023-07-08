@@ -10,9 +10,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "outDir": "dist",
     "noImplicitAny": true,
-    "isolatedModules": true,
+    "isolatedModules": false
   },
   "include": [
     "src/index.ts"

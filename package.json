@@ -15,7 +15,7 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "node esbuild.config.js"
+    "build": "node esbuild.config.js && tsc"
   },
   "author": "Johan Glud Jensen",
   "license": "MIT",

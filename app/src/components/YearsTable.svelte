@@ -1,12 +1,12 @@
 <script lang="ts">
   import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
-  import type { IYear } from "@johang/calendarjs";
   import { years, year, updateYear } from "../store";
+  import type { IYear } from "@johang/calendarjs";
 
   let thisYears: IYear[];
   let thisYear: string;
-  
+
   year.subscribe((value) => {
     thisYear = value.year;
   });

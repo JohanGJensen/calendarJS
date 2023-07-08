@@ -1,8 +1,11 @@
-import type { IMonth, IYear } from "@johang/calendarjs";
 import { writable, get } from "svelte/store";
 import Calendar from "@johang/calendarjs";
+import type { IMonth, IYear, Config } from "@johang/calendarjs";
 
-const calendar = new Calendar(1980, 2020);
+const config: Config = {
+  range: { start: 1980, end: 2020 },
+};
+const calendar = new Calendar(config);
 
 export const years = writable<IYear[]>(calendar.getYears());
 export const year = writable<IYear>(get(years)[0]);
