@@ -18,8 +18,8 @@
 
 <Table>
   <TableHeader text={`years ${thisYear}`} />
-  {#each thisYears as { year }, i}
-    <tr on:click={() => updateYear(thisYears[i])}>
+  {#each thisYears as { year, currentYear: current }, i}
+    <tr class:current on:click={() => updateYear(thisYears[i])}>
       {year}
     </tr>
   {/each}
@@ -32,5 +32,10 @@
 
   tr:hover {
     background-color: #ddd;
+  }
+
+  tr.current {
+    background-color: #4caf50;
+    color: white;
   }
 </style>

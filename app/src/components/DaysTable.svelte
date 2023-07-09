@@ -16,8 +16,8 @@
 <Table>
   {#if days}
     <TableHeader text={`Days from month: ${thisMonth}`} />
-    {#each days as { day, number }}
-      <tr on:click={() => console.log(day)}>
+    {#each days as { day, number, currentDay: current }}
+      <tr class:current on:click={() => console.log(day)}>
         {number} - {day}
       </tr>
     {/each}
@@ -31,5 +31,10 @@
 
   tr:hover {
     background-color: #ddd;
+  }
+
+  tr.current {
+    background-color: #4caf50;
+    color: white;
   }
 </style>

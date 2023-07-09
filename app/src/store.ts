@@ -3,7 +3,7 @@ import Calendar from "@johang/calendarjs";
 import type { IMonth, IYear, Config } from "@johang/calendarjs";
 
 const config: Config = {
-  range: { start: 1980, end: 2020 },
+  range: { start: 1980, end: 2050 },
 };
 const calendar = new Calendar(config);
 

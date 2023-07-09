@@ -58,7 +58,6 @@ export default class Calendar {
 
       if (this.currentYear === year) {
         isCurrentYear = true;
-        this.currentYear = year;
       }
 
       years.push({
@@ -75,16 +74,15 @@ export default class Calendar {
     const monthCount = 12;
     const months: IMonth[] = [];
 
-    for (let month = 1; monthCount >= month; month++) {
+    for (let month = 0; monthCount > month; month++) {
       let isCurrentMonth = false;
 
-      if (this.currentMonth === month - 1 && this.currentYear === year) {
+      if (this.currentMonth === month && this.currentYear === year) {
         isCurrentMonth = true;
-        this.currentMonth = month;
       }
 
       months.push({
-        month: this.getMonthString(month - 1),
+        month: this.getMonthString(month),
         days: this.getDays(year, month),
         currentMonth: isCurrentMonth,
       });
