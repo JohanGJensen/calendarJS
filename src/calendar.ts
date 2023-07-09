@@ -6,12 +6,18 @@ import {
   IMonth,
   IYear,
   Months,
-} from "./interfaces";
+} from './interfaces';
 
 export default class Calendar {
   public range: CalendarRange;
-  public months: Months;
-  public days: Days;
+
+  // internal translations
+  private months: Months;
+  /**
+   * @private
+   * @type {Days} - sunday, monday, tuesday, wednesday, thursday, friday, saturday
+   */
+  private days: Days;
 
   // today's year & month
   private currentYear: number = new Date().getFullYear();
@@ -20,27 +26,27 @@ export default class Calendar {
   constructor(config: Config) {
     this.range = config.range;
     this.months = config.months || [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     this.days = config.days || [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
     ];
   }
 
@@ -112,6 +118,12 @@ export default class Calendar {
 
     return days;
   };
+
+  /**
+   * set new translations
+   * public selected date (year, month, day)
+   * - update date when changing = year, month, day
+   */
 
   private getDayString = (day: number) => {
     return this.days[day];

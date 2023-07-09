@@ -5,6 +5,7 @@ const { build } = require("esbuild");
 // new Generator({
 //   entry: './src/index.ts',
 //   output: 'dist/index.d.ts',
+//  tsc: '--project tsconfig.json',
 // }).generate();
 
 const sharedConfig = {
