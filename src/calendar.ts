@@ -11,7 +11,10 @@ import {
 export default class Calendar {
   public range: CalendarRange;
 
-  // internal translations
+  /**
+   * @private
+   * @type {Months} - january, february, march, april, may, june, july, august, september, october, november, december
+   */
   private months: Months;
   /**
    * @private
@@ -50,6 +53,26 @@ export default class Calendar {
     ];
   }
 
+  /**
+   * @description - set the string equivalent of the months
+   * @param months - array of months x12
+   */
+  public setMonths = (months: Months) => {
+    this.months = months;
+  };
+
+  /**
+   * @description - set the string equivalent of the days
+   * @param days - array of days x7
+   */
+  public setDays = (days: Days) => {
+    this.days = days;
+  };
+
+  /**
+   * @description - get years from range.
+   * @returns {IYear[]} - array of years
+   */
   public getYears = (): IYear[] => {
     const years: IYear[] = [];
 
@@ -118,7 +141,6 @@ export default class Calendar {
   };
 
   /**
-   * set new translations
    * public selected date (year, month, day)
    * - update date when changing = year, month, day
    */
