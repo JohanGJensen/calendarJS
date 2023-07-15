@@ -3,6 +3,8 @@
   import MonthsTable from "../components/MonthsTable.svelte";
   import DaysTable from '../components/DaysTable.svelte';
 
+  import OptionPanel from '../components/OptionPanel/OptionPanel.svelte';
+
 </script>
 
 <h1>Calendar package</h1>
@@ -12,6 +14,10 @@
   <MonthsTable />
   <DaysTable />
 </div>
+
+<hr />
+
+<OptionPanel />
 
 <style>
   div {

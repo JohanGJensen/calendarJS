@@ -5,13 +5,20 @@ import type { IMonth, IYear, Config } from "@johang/calendarjs";
 const config: Config = {
   range: { start: 1980, end: 2050 },
 };
-const calendar = new Calendar(config);
+export const calendar = new Calendar(config);
 
 export const years = writable<IYear[]>(calendar.getYears());
 export const year = writable<IYear>(get(years)[0]);
 
 export const months = writable<IMonth[]>(get(year).months);
 export const month = writable<IMonth>(get(months)[0]);
+
+export const updateCalendar = () => {
+  years.update(() => [...calendar.getYears()]);
+  year.update(() => get(years)[0]);
+  months.update(() => [...get(year).months]);
+  month.update(() => get(months)[0]);
+};
 
 export const updateYear = (y: IYear) => {
   year.set(y);

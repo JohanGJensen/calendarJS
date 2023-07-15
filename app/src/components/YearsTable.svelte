@@ -18,11 +18,13 @@
 
 <Table>
   <TableHeader text={`years ${thisYear}`} />
+  {#key thisYears}
   {#each thisYears as { year, currentYear: current }, i}
     <tr class:current on:click={() => updateYear(thisYears[i])}>
       {year}
     </tr>
   {/each}
+  {/key}
 </Table>
 
 <style>
