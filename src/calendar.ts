@@ -188,10 +188,6 @@ export default class Calendar {
     return days;
   };
 
-  /**
-   * update readme (config)
-   */
-
   private getDayString = (day: number) => {
     return this.days[day];
   };
