@@ -135,5 +135,3 @@ export default class Calendar {
     return Date.parse(`${year}-01-01`);
   };
 }
-
-export type CalendarType = typeof Calendar;
