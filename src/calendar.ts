@@ -11,6 +11,10 @@ import {
 export default class Calendar {
   public range: CalendarRange;
 
+  public selectedYear: IYear | null = null;
+  public selectedMonth: IMonth | null = null;
+  public selectedDay: IDay | null = null;
+
   /**
    * @private
    * @type {Months} - january, february, march, april, may, june, july, august, september, october, november, december
@@ -29,7 +33,7 @@ export default class Calendar {
 
   constructor(config: Config) {
     this.range = config.range;
-    this.months = config.months || [
+    this.months = config.months ?? [
       'January',
       'February',
       'March',
@@ -43,7 +47,7 @@ export default class Calendar {
       'November',
       'December',
     ];
-    this.days = config.days || [
+    this.days = config.days ?? [
       'Sunday',
       'Monday',
       'Tuesday',
@@ -68,6 +72,50 @@ export default class Calendar {
    */
   public setDays = (days: Days) => {
     this.days = days;
+  };
+
+  /**
+   * @description - sets the selected year - aswell as update the month to closest accurate month.
+   * @param year - year selected
+   */
+  public setSelectedYear = (year: IYear) => {
+    if (this.selectedMonth) {
+      const monthIndex = this.months.findIndex(
+        (m) => m === this.selectedMonth?.month,
+      );
+      const month = year.months[monthIndex];
+
+      this.setSelectedMonth(month);
+    }
+
+    this.selectedYear = year;
+  };
+
+  /**
+   * @description - sets the selected month, aswell as update the day to closest accurate day.
+   * @param month - month selected
+   */
+  public setSelectedMonth = (month: IMonth) => {
+    if (this.selectedDay) {
+      // if selected day is greater than the number of days in the month
+      if (this.selectedDay.number >= month.days.length) {
+        this.setSelectedDay(month.days[month.days.length - 1]);
+      }
+      // if selected day is less than the number of days in the month
+      else if (this.selectedDay.number < month.days.length) {
+        this.setSelectedDay(month.days[this.selectedDay.number - 1]);
+      }
+    }
+
+    this.selectedMonth = month;
+  };
+
+  /**
+   * @description - sets the selected day.
+   * @param day - day selected
+   */
+  public setSelectedDay = (day: IDay) => {
+    this.selectedDay = day;
   };
 
   /**
@@ -132,7 +180,7 @@ export default class Calendar {
 
       days.push({
         day: this.getDayString(day % 7),
-        number: day.toString(),
+        number: day,
         currentDay: isCurrentDay,
       });
     }
@@ -141,8 +189,7 @@ export default class Calendar {
   };
 
   /**
-   * public selected date (year, month, day)
-   * - update date when changing = year, month, day
+   * update readme (config)
    */
 
   private getDayString = (day: number) => {

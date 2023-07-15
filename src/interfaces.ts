@@ -29,7 +29,7 @@ export type IMonth = {
 
 export type IDay = {
   day: string;
-  number: string;
+  number: number;
   currentDay: boolean;
 };
 
