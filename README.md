@@ -27,12 +27,16 @@ a class that can generate objects of years/months/days for further developing a 
   // getDays(year, month)
   calendar.getDays(2022, 7);
 
+  // set a different language for months & days
+  calendar.setMonths
+  calendar.setDays
+
 ```
 
 ### TS interfaces
 
 ```js
-  export interface IYear {
+export interface IYear {
   year: string;
   months: IMonth[];
   currentYear: boolean;
