@@ -10,7 +10,6 @@
   year.subscribe((value) => {
     thisYear = value.year;
     months = value.months;
-    console.log(months);
   });
 </script>
 
