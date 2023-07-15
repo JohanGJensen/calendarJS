@@ -22,9 +22,10 @@ export default class Calendar {
    */
   private days: Days;
 
-  // today's year & month
+  // today's year, month & day
   private currentYear: number = new Date().getFullYear();
   private currentMonth: number = new Date().getMonth();
+  private currentDay = new Date().getDate();
 
   constructor(config: Config) {
     this.range = config.range;
@@ -115,15 +116,14 @@ export default class Calendar {
   };
 
   public getDays = (year: number, month: number): IDay[] => {
-    const currentDay = new Date().getDate();
-    const dayCount = new Date(year, month, 0).getDate();
+    const daysInMonth = new Date(year, month, 0).getDate();
     const days: IDay[] = [];
 
-    for (let day = 1; dayCount >= day; day++) {
+    for (let day = 1; daysInMonth >= day; day++) {
       let isCurrentDay = false;
 
       if (
-        currentDay === day &&
+        this.currentDay === day &&
         month === this.currentMonth &&
         year === this.currentYear
       ) {
@@ -151,9 +151,5 @@ export default class Calendar {
 
   private getMonthString = (month: number) => {
     return this.months[month];
-  };
-
-  private yearToTimestamp = (year: number) => {
-    return Date.parse(`${year}-01-01`);
   };
 }
