@@ -19,7 +19,7 @@
 <div>
   <h2>Selected date</h2>
   {#if selectedDate.day}
-    <p>{selectedDate.day.day}</p>
+    <p>{selectedDate.day.day} {selectedDate.day.number}</p>
   {/if}
   {#if selectedDate.month}
     <p>{selectedDate.month.month}</p>
@@ -34,5 +34,9 @@
     width: 300px;
     height: 200px;
     border: black 1px solid;
+  }
+
+  h2, p {
+    padding-left: 0.5em;
   }
 </style>
