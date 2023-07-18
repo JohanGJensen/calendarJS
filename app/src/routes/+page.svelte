@@ -4,6 +4,7 @@
   import DaysTable from '../components/DaysTable.svelte';
 
   import OptionPanel from '../components/OptionPanel/OptionPanel.svelte';
+  import SelectedDate from '../components/SelectedDate/SelectedDate.svelte';
 
 </script>
 
@@ -13,6 +14,8 @@
   <YearsTable />
   <MonthsTable />
   <DaysTable />
+
+  <SelectedDate />
 </div>
 
 <hr />

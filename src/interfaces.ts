@@ -9,10 +9,10 @@ export type CalendarRange = {
  * @property {Months} [months] - The names of months in calendar: ["January", "February", ...]
  * @property {Days} [days] - The names of days in calendar: ["Sunday", "Monday", ...]
  */
-export type Config = {
+export type Config<M extends string = string, D extends string = string> = {
   range: CalendarRange;
-  months?: Months;
-  days?: Days;
+  months?: Months<M>;
+  days?: Days<D>;
 };
 
 export type IYear = {
@@ -33,18 +33,18 @@ export type IDay = {
   currentDay: boolean;
 };
 
-export type Days = [string, string, string, string, string, string, string]; // x7
-export type Months = [
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
+export type Days<T extends string = string> = [T, T, T, T, T, T, T]; // x7
+export type Months<T extends string = string> = [
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
+  T,
 ]; // x12

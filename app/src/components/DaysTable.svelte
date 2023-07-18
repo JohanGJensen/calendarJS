@@ -1,7 +1,7 @@
 <script lang="ts">
   import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
-  import { month } from "../store";
+  import { month, updateDay } from "../store";
   import type { IDay } from "@johang/calendarjs";
 
   let thisMonth: string;
@@ -16,8 +16,8 @@
 <Table>
   {#if days}
     <TableHeader text={`Days from month: ${thisMonth}`} />
-    {#each days as { day, number, currentDay: current }}
-      <tr class:current on:click={() => console.log(day)}>
+    {#each days as { day, number, currentDay: current }, i}
+      <tr class:current on:click={() => updateDay(days[i])}>
         {number} - {day}
       </tr>
     {/each}

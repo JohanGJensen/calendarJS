@@ -8,7 +8,10 @@ import {
   Months,
 } from './interfaces';
 
-export default class Calendar {
+export default class Calendar<
+  M extends string = string,
+  D extends string = string,
+> {
   public range: CalendarRange;
 
   public selectedYear: IYear | null = null;
@@ -19,50 +22,54 @@ export default class Calendar {
    * @private
    * @type {Months} - january, february, march, april, may, june, july, august, september, october, november, december
    */
-  private months: Months;
+  private months: Months<M>;
   /**
    * @private
    * @type {Days} - sunday, monday, tuesday, wednesday, thursday, friday, saturday
    */
-  private days: Days;
+  private days: Days<D>;
 
   // today's year, month & day
   private currentYear: number = new Date().getFullYear();
   private currentMonth: number = new Date().getMonth();
   private currentDay = new Date().getDate();
 
-  constructor(config: Config) {
+  constructor(config: Config<M, D>) {
     this.range = config.range;
-    this.months = config.months ?? [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    this.days = config.days ?? [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ];
+    this.months =
+      config.months ??
+      ([
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ] as Months<M>);
+    this.days =
+      config.days ??
+      ([
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ] as Days<D>);
   }
 
   /**
    * @description - set the string equivalent of the months
    * @param months - array of months x12
    */
-  public setMonths = (months: Months) => {
+  public setMonths = (months: Months<M>) => {
     this.months = months;
   };
 
@@ -70,7 +77,7 @@ export default class Calendar {
    * @description - set the string equivalent of the days
    * @param days - array of days x7
    */
-  public setDays = (days: Days) => {
+  public setDays = (days: Days<D>) => {
     this.days = days;
   };
 
