@@ -1,12 +1,37 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 import Calendar from '../src/calendar';
-import { Config } from '../src/interfaces';
+import { Config, Months, Days } from '../src/interfaces';
 
 const config: Config = {
   range: { start: 1970, end: 2299 },
 };
 
 let calendar: Calendar;
+
+const mockMonths: Months = [
+  'januar',
+  'februar',
+  'marts',
+  'april',
+  'maj',
+  'juni',
+  'juli',
+  'august',
+  'september',
+  'oktober',
+  'november',
+  'december',
+];
+
+const mockDays: Days = [
+  'søndag',
+  'mandag',
+  'tirsdag',
+  'onsdag',
+  'torsdag',
+  'fredag',
+  'lørdag',
+];
 
 describe('calendar.ts', () => {
   beforeEach(() => {
@@ -76,13 +101,46 @@ describe('calendar.ts', () => {
     });
   });
 
-  describe.todo('setSelectedYear');
+  describe('setSelectedYear', () => {
+    test('should set selected year', () => {
+      const year = calendar.getYears()[100];
+      calendar.setSelectedYear(year);
 
-  describe.todo('setSelectedMonth');
+      expect(calendar.selectedYear).toBe(year);
+    });
+  });
 
-  describe.todo('setSelectedDay');
+  describe('setSelectedMonth', () => {
+    test('should set selected month', () => {
+      const month = calendar.getMonths(2020)[3];
+      calendar.setSelectedMonth(month);
 
-  describe.todo('setMonths');
+      expect(calendar.selectedMonth).toBe(month);
+    });
+  });
 
-  describe.todo('setDays');
+  describe('setSelectedDay', () => {
+    test('should set selected day', () => {
+      const day = calendar.getDays(2020, 3)[10];
+      calendar.setSelectedDay(day);
+
+      expect(calendar.selectedDay).toBe(day);
+    });
+  });
+
+  describe('setMonths', () => {
+    test('should set months', () => {
+      calendar.setMonths(mockMonths);
+
+      expect(calendar.getMonths(2020)[0].month).toBe('januar');
+    });
+  });
+
+  describe('setDays', () => {
+    test('should set days', () => {
+      calendar.setDays(mockDays);
+
+      expect(calendar.getDays(2020, 3)[0].day).toBe('mandag');
+    });
+  });
 });
