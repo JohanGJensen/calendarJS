@@ -1,15 +1,16 @@
-const { build } = require("esbuild");
+const { build } = require('esbuild');
 // const { dependencies } = require('./package.json');
-const { Generator } = require('npm-dts');
+// const { Generator } = require('npm-dts');
 
-new Generator({
-  entry: 'index.ts',
-  output: 'dist/index.d.ts',
-}).generate();
+// new Generator({
+//   entry: './src/index.ts',
+//   output: 'dist/index.d.ts',
+//   tsc: '--project tsconfig.json --isolatedModules true',
+// }).generate();
 
 const sharedConfig = {
-  entryPoints: ["index.ts"],
-  bundle: false,
+  entryPoints: ['src/index.ts'],
+  bundle: true,
   minify: false,
   // external: Object.keys(dependencies),
 };
@@ -22,7 +23,7 @@ const sharedConfig = {
 
 build({
   ...sharedConfig,
-  outfile: "dist/index.js",
+  outfile: 'dist/index.js',
   platform: 'neutral', // for ESM
-  format: "esm",
+  format: 'esm',
 });

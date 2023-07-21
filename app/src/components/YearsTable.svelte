@@ -1,12 +1,12 @@
 <script lang="ts">
   import TableHeader from "./TableHeader.svelte";
   import Table from "./Table.svelte";
-  import type { IYear } from "@johang/calendarjs";
   import { years, year, updateYear } from "../store";
+  import type { IYear } from "@johang/calendarjs";
 
   let thisYears: IYear[];
   let thisYear: string;
-  
+
   year.subscribe((value) => {
     thisYear = value.year;
   });
@@ -18,11 +18,13 @@
 
 <Table>
   <TableHeader text={`years ${thisYear}`} />
-  {#each thisYears as { year }, i}
-    <tr on:click={() => updateYear(thisYears[i])}>
+  {#key thisYears}
+  {#each thisYears as { year, currentYear: current }, i}
+    <tr class:current on:click={() => updateYear(thisYears[i])}>
       {year}
     </tr>
   {/each}
+  {/key}
 </Table>
 
 <style>
@@ -32,5 +34,10 @@
 
   tr:hover {
     background-color: #ddd;
+  }
+
+  tr.current {
+    background-color: #4caf50;
+    color: white;
   }
 </style>

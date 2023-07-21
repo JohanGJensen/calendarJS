@@ -16,8 +16,8 @@
 <Table>
   {#if months}
     <TableHeader text={`Months from year: ${thisYear}`} />
-    {#each months as { month }, i}
-      <tr on:click={() => updateMonth(months[i])}>
+    {#each months as { month, currentMonth: current }, i}
+      <tr class:current on:click={() => updateMonth(months[i])}>
         {month}
       </tr>
     {/each}
@@ -31,5 +31,10 @@
 
   tr:hover {
     background-color: #ddd;
+  }
+
+  tr.current {
+    background-color: #4caf50;
+    color: white;
   }
 </style>
